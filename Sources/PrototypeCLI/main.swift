@@ -5,30 +5,33 @@ import Foundation
 // MARK: - Заглушки для первого запуска
 
 struct StubDrawing: ActionCardDrawing {
-    func drawCards(count: Int) -> [ActionCard] {
+    func drawCards(count _: Int) -> [ActionCard] {
         // Пока возвращаем пустой массив — никаких карт не нужно
         []
     }
 }
 
 // MARK: - Точка входа
+
 @main
 struct GameCLI {
     static func main() {
         // 1. Создаём начальное состояние (пока вручную)
         var state = GameState(
             map: Map(cells: [:]),
-            info: GameInfo(turn: 1, maxTurns: 10, phase: .friendlyCommand, availableCommand: 3),
+            info: GameInfo(
+                turn: 1, maxTurns: 10, phase: .friendlyCommand,
+                availableCommand: 3, savedCommand: 0),
             units: [
                 "hq": Unit(id: "hq"),
                 "sq1": Unit(id: "sq1"),
-                "sq2": Unit(id: "sq2")
+                "sq2": Unit(id: "sq2"),
             ],
             unitState: UnitState(
                 unitPosition: [
                     "hq": GridCoordinate(row: 1, column: 1),
                     "sq1": GridCoordinate(row: 1, column: 1),
-                    "sq2": GridCoordinate(row: 1, column: 2)
+                    "sq2": GridCoordinate(row: 1, column: 2),
                 ],
                 unitExposed: [],
                 unitPinned: []
@@ -43,21 +46,24 @@ struct GameCLI {
 
         // 3. Игровой цикл
         while !state.info.isOver {
+            let panelWidth = 80
+            let panelMaxWidth = panelWidth - 2
+
             // Отрисовываем информационную панель (верхняя часть экрана)
             Renderer.drawInfoPanel(
                 state: state,
                 startRow: 1, startCol: 1,
-                width: 60, height: 6
+                width: panelWidth, height: 6
             )
 
             // Отрисовываем панель меню (середина экрана)
-            Renderer.drawBox(startRow: 7, startCol: 1, width: 60, height: 4)
-            Renderer.drawText("1. Move sq1 to (2,1)", atRow: 8, col: 2, maxWidth: 56)
-            Renderer.drawText("2. Finish Phase", atRow: 9, col: 2, maxWidth: 56)
+            Renderer.drawBox(startRow: 7, startCol: 1, width: panelWidth, height: 4)
+            Renderer.drawText("1. Move sq1 to (2,1)", atRow: 8, col: 2, maxWidth: panelMaxWidth)
+            Renderer.drawText("2. Finish Phase", atRow: 9, col: 2, maxWidth: panelMaxWidth)
 
             // Отрисовываем панель ввода (нижняя часть)
-            Renderer.drawBox(startRow: 11, startCol: 1, width: 60, height: 3)
-            Renderer.drawText("> ", atRow: 12, col: 2, maxWidth: 56)
+            Renderer.drawBox(startRow: 11, startCol: 1, width: panelWidth, height: 3)
+            Renderer.drawText("> ", atRow: 12, col: 2, maxWidth: panelMaxWidth)
 
             // Перемещаем курсор в строку ввода
             Renderer.moveCursorTo(row: 12, col: 4)
@@ -68,7 +74,12 @@ struct GameCLI {
             case "1":
                 state = GameEngine.apply(
                     state: state,
-                    action: .movement(.move(id: "sq1", to: GridCoordinate(row: 2, column: 1), generalInitiative: false)),
+                    action: .movement(
+                        .move(
+                            id: "sq1", to: GridCoordinate(row: 2, column: 1),
+                            generalInitiative: false
+                        )
+                    ),
                     drawing: drawing
                 )
             case "2":
@@ -79,8 +90,11 @@ struct GameCLI {
                 )
             default:
                 // Очищаем панель результата и выводим ошибку
-                Renderer.clearPanel(startRow: 14, startCol: 1, width: 60, height: 2)
-                Renderer.drawText("Неизвестная команда. Попробуйте снова.", atRow: 15, col: 2, maxWidth: 56)
+                Renderer.clearPanel(startRow: 14, startCol: 1, width: panelWidth, height: 2)
+                Renderer.drawText(
+                    "Неизвестная команда. Попробуйте снова.", atRow: 15, col: 2,
+                    maxWidth: panelMaxWidth
+                )
             }
         }
 

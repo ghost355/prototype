@@ -8,8 +8,9 @@ enum RendererFormatter {
     /// Возвращает массив строк, представляющих информационную панель
     static func formatInfoPanel(state: GameState) -> [String] {
         var lines: [String] = []
-        lines.append("Ход: \(state.info.turn) | Фаза: \(state.info.phase)")
-        lines.append("Команд: \(state.info.availableCommand)")
+        lines.append("Ход: \(state.info.turn) | Фаза: \(state.info.phase.name)")
+        lines.append("Команд доступно: \(state.info.availableCommand)")
+        lines.append("Команд сохранено: \(state.info.savedCommand)")
         lines.append(
             "Exposed: \(state.unitState.unitExposed.map { String($0) }.joined(separator: ", "))"
         )

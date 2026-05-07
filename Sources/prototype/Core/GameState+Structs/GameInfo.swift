@@ -6,6 +6,9 @@ struct GameInfo: Codable {
     let phase: GamePhase
 
     let availableCommand: Int
+    let savedCommand: Int
 
-    var isOver: Bool { turn > maxTurns }
+    var isOver: Bool {
+        turn > maxTurns
+    }
 }
