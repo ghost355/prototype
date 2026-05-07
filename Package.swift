@@ -10,11 +10,18 @@ let package = Package(
     products: [
         .library(
             name: "prototype",
-            targets: ["prototype"])
+            targets: ["prototype"]),
+        .executable(
+            name: "PrototypeCLI",
+            targets: ["PrototypeCLI"]),
     ],
     targets: [
         .target(
             name: "prototype"),
+        .executableTarget(
+            name: "PrototypeCLI",
+            dependencies: ["prototype"],
+            path: "Sources/PrototypeCLI"),
         .testTarget(
             name: "prototypeTests",
             dependencies: ["prototype"]
