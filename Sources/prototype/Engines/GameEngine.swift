@@ -1,10 +1,10 @@
 // GameEngine.swift
 
 enum GameEngine {
-    static func apply(state: GameState, action: GameAction, drawing: ActionCardDrawing) -> GameState
-    {
-
+    static func apply(state: GameState, action: GameAction, drawing: ActionCardDrawing) -> GameState {
         switch action {
+        case let .game(action):
+            return GameCommandHandler.execute(state: state, action: action, drawing: drawing)
 
         case let .phase(action):
             return PhaseHandler.execute(state: state, action: action, drawing: drawing)

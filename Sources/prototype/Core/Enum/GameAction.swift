@@ -1,6 +1,9 @@
 // GameAction.swift
 
 enum GameAction: Equatable {
+    enum Game: Equatable {
+        case exit
+    }
 
     enum Phase: Equatable {
         case finish
@@ -67,10 +70,11 @@ enum GameAction: Equatable {
         case activityCheck
         case fallBack(unitID: UnitID)
         case shiftFire(unitID: UnitID, target: GridCoordinate)
-        case callForFire(spotter: UnitID, target: GridCoordinate)  // Вражеский вызов огня
-        case grenadeAttack(unitID: UnitID, target: UnitID)  // Вражеская гранатная атака
+        case callForFire(spotter: UnitID, target: GridCoordinate) // Вражеский вызов огня
+        case grenadeAttack(unitID: UnitID, target: UnitID) // Вражеская гранатная атака
     }
 
+    case game(Game)
     case phase(Phase)
     case movement(Movement)
     case combat(Combat)

@@ -3,12 +3,7 @@
 enum FinishPhaseCommand {
     static func execute(state: GameState) -> GameState {
         // logic
-        return GameState(
-            map: state.map,
-            info: GameInfo(
-                turn: state.info.turn + 1, maxTurns: state.info.maxTurns, phase: state.info.phase
-            ),
-            units: state.units, unitState: state.unitState
-        )
+        let info = state.info.copy(turn: state.info.turn + 1)
+        return state.copy(info: info)
     }
 }

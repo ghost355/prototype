@@ -1,16 +1,19 @@
 import Foundation
 @testable import prototype
 
-// Структура для нечистого провайдера колоды
+/// Структура для нечистого провайдера колоды
 struct StubDrawing: ActionCardDrawing {
-    func drawCards(count: Int) -> [ActionCard] { [] }
+    func drawCards(count _: Int) -> [ActionCard] {
+        []
+    }
 }
 
-// Глобальная точка входа
+/// Глобальная точка входа
 @main
 struct GameApp {
     static func main() {
         // MARK: - Заглушки, пока нет Setup
+
         let phases: [GamePhase] = [
             .friendlyHQEvent,
             .friendlyCommand,
@@ -18,19 +21,20 @@ struct GameApp {
             .mutualCaptureRetreat,
             .atCombatVehicleMovement,
             .mutualCombat,
-            .cleanUp
+            .cleanUp,
         ]
 
         let info = GameInfo(
             turn: 1,
             maxTurns: 3,
-            phase: .friendlyHQEvent
+            phase: .friendlyHQEvent,
+            isGameRunning: true
         )
 
         let map = Map(
             cells: [:]
         )
-        let units: [String: prototype.Unit] = [:]  // уточняем тип для избежания неоднозначности
+        let units: [String: prototype.Unit] = [:] // уточняем тип для избежания неоднозначности
         let unitState = UnitState(
             unitPosition: [:],
             unitExposed: [],

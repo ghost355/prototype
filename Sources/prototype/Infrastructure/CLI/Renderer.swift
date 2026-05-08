@@ -9,15 +9,11 @@ enum RendererFormatter {
     static func formatInfoPanel(state: GameState) -> [String] {
         var lines: [String] = []
         lines.append("Ход: \(state.info.turn) | Фаза: \(state.info.phase.name)")
-        lines.append(
-            "Exposed: \(state.unitState.unitExposed.map { String($0) }.joined(separator: ", "))"
-        )
         return lines
     }
 
     /// Возвращает строки для отрисовки рамки (верх, низ, боковина)
-    static func formatBox(width: Int, height _: Int) -> (top: String, bottom: String, empty: String)
-    {
+    static func formatBox(width: Int, height _: Int) -> (top: String, bottom: String, empty: String) {
         let top = "┌" + String(repeating: "─", count: width - 2) + "┐"
         let bottom = "└" + String(repeating: "─", count: width - 2) + "┘"
         let empty = "│" + String(repeating: " ", count: width - 2) + "│"
@@ -67,7 +63,7 @@ enum Renderer {
         moveCursorTo(row: startRow, col: startCol)
         print(RendererFormatter.coloredText(top, color: color), terminator: "")
 
-        for row in 1..<height - 1 {
+        for row in 1 ..< height - 1 {
             moveCursorTo(row: startRow + row, col: startCol)
             print(RendererFormatter.coloredText(empty, color: color), terminator: "")
         }
@@ -106,7 +102,7 @@ enum Renderer {
         }
 
         let emptyLine = String(repeating: " ", count: width - 2)
-        for row in 1..<height - 1 {
+        for row in 1 ..< height - 1 {
             moveCursorTo(row: startRow + row, col: startCol + 1)
             print(emptyLine, terminator: "")
         }
@@ -115,15 +111,15 @@ enum Renderer {
 
     static func drawMessage(
         _ message: String, atRow: Int, col: Int, maxWidth: Int, maxLines: Int = 3,
-        color: TextColor = .white
+        color _: TextColor = .white
     ) {
-        guard maxWidth > 4 else { return }  // минимальная ширина для панели
+        guard maxWidth > 4 else { return } // минимальная ширина для панели
         let cleaned = message.trimmingCharacters(in: .whitespacesAndNewlines)
         let usableWidth = maxWidth - 4
 
         // Если сообщение пустое — просто очищаем строки
         guard !cleaned.isEmpty else {
-            for i in 0..<maxLines {
+            for i in 0 ..< maxLines {
                 moveCursorTo(row: atRow + i, col: col)
                 print(String(repeating: " ", count: usableWidth), terminator: "")
             }
@@ -133,7 +129,7 @@ enum Renderer {
         var lines: [String] = []
         var remaining = cleaned
 
-        while !remaining.isEmpty && lines.count < maxLines {
+        while !remaining.isEmpty, lines.count < maxLines {
             if remaining.count <= usableWidth {
                 lines.append(remaining)
                 break
@@ -141,7 +137,8 @@ enum Renderer {
 
             let splitIndex =
                 remaining.index(
-                    remaining.startIndex, offsetBy: usableWidth, limitedBy: remaining.endIndex)
+                    remaining.startIndex, offsetBy: usableWidth, limitedBy: remaining.endIndex
+                )
                 ?? remaining.endIndex
             let chunk = String(remaining[..<splitIndex])
 
@@ -172,12 +169,13 @@ enum Renderer {
         }
 
         if lines.count < maxLines {
-            for i in lines.count..<maxLines {
+            for i in lines.count ..< maxLines {
                 moveCursorTo(row: atRow + i, col: col)
                 print(String(repeating: " ", count: usableWidth), terminator: "")
             }
         }
     }
+
     static func clearMessage(row: Int, col: Int, width: Int, color: TextColor = .white) {
         drawMessage("", atRow: row, col: col, maxWidth: width, color: color)
     }
