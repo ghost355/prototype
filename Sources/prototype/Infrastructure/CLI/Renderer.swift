@@ -5,12 +5,10 @@ import Foundation
 // MARK: - Чистые функции форматирования
 
 enum RendererFormatter {
-    /// Возвращает массив строк, представляющих информационную панель
+    /// Возвращает массив строк, представляющих информационную панель (некоторые поля из GameState)
     static func formatInfoPanel(state: GameState) -> [String] {
         var lines: [String] = []
         lines.append("Ход: \(state.info.turn) | Фаза: \(state.info.phase.name)")
-        lines.append("Команд доступно: \(state.info.availableCommand)")
-        lines.append("Команд сохранено: \(state.info.savedCommand)")
         lines.append(
             "Exposed: \(state.unitState.unitExposed.map { String($0) }.joined(separator: ", "))"
         )
@@ -61,19 +59,21 @@ enum Renderer {
         print("\u{001B}[?25h", terminator: "")
     }
 
-    static func drawBox(startRow: Int, startCol: Int, width: Int, height: Int) {
+    static func drawBox(
+        startRow: Int, startCol: Int, width: Int, height: Int, color: TextColor = .white
+    ) {
         let (top, bottom, empty) = RendererFormatter.formatBox(width: width, height: height)
 
         moveCursorTo(row: startRow, col: startCol)
-        print(top, terminator: "")
+        print(RendererFormatter.coloredText(top, color: color), terminator: "")
 
         for row in 1..<height - 1 {
             moveCursorTo(row: startRow + row, col: startCol)
-            print(empty, terminator: "")
+            print(RendererFormatter.coloredText(empty, color: color), terminator: "")
         }
 
         moveCursorTo(row: startRow + height - 1, col: startCol)
-        print(bottom, terminator: "")
+        print(RendererFormatter.coloredText(bottom, color: color), terminator: "")
     }
 
     static func drawText(
@@ -97,6 +97,14 @@ enum Renderer {
     }
 
     static func clearPanel(startRow: Int, startCol: Int, width: Int, height: Int) {
+        guard height > 1 else {
+            // Для высоты 1 просто очищаем одну строку
+            moveCursorTo(row: startRow, col: startCol + 1)
+            print(String(repeating: " ", count: width - 2), terminator: "")
+            fflush(stdout)
+            return
+        }
+
         let emptyLine = String(repeating: " ", count: width - 2)
         for row in 1..<height - 1 {
             moveCursorTo(row: startRow + row, col: startCol + 1)
@@ -104,9 +112,78 @@ enum Renderer {
         }
         fflush(stdout)
     }
+
+    static func drawMessage(
+        _ message: String, atRow: Int, col: Int, maxWidth: Int, maxLines: Int = 3,
+        color: TextColor = .white
+    ) {
+        guard maxWidth > 4 else { return }  // минимальная ширина для панели
+        let cleaned = message.trimmingCharacters(in: .whitespacesAndNewlines)
+        let usableWidth = maxWidth - 4
+
+        // Если сообщение пустое — просто очищаем строки
+        guard !cleaned.isEmpty else {
+            for i in 0..<maxLines {
+                moveCursorTo(row: atRow + i, col: col)
+                print(String(repeating: " ", count: usableWidth), terminator: "")
+            }
+            return
+        }
+
+        var lines: [String] = []
+        var remaining = cleaned
+
+        while !remaining.isEmpty && lines.count < maxLines {
+            if remaining.count <= usableWidth {
+                lines.append(remaining)
+                break
+            }
+
+            let splitIndex =
+                remaining.index(
+                    remaining.startIndex, offsetBy: usableWidth, limitedBy: remaining.endIndex)
+                ?? remaining.endIndex
+            let chunk = String(remaining[..<splitIndex])
+
+            if let lastSpace = chunk.lastIndex(of: " "), lastSpace > chunk.startIndex {
+                let breakIndex = chunk.distance(from: chunk.startIndex, to: lastSpace)
+                let line = String(chunk[..<chunk.index(chunk.startIndex, offsetBy: breakIndex)])
+                lines.append(line)
+                let nextStart = chunk.index(chunk.startIndex, offsetBy: breakIndex + 1)
+                if nextStart < remaining.endIndex {
+                    remaining = String(remaining[nextStart...])
+                } else {
+                    remaining = ""
+                }
+            } else {
+                lines.append(String(chunk))
+                if splitIndex < remaining.endIndex {
+                    remaining = String(remaining[splitIndex...])
+                } else {
+                    remaining = ""
+                }
+            }
+        }
+
+        for (i, line) in lines.enumerated() {
+            moveCursorTo(row: atRow + i, col: col)
+            let padded = line.padding(toLength: usableWidth, withPad: " ", startingAt: 0)
+            print(padded, terminator: "")
+        }
+
+        if lines.count < maxLines {
+            for i in lines.count..<maxLines {
+                moveCursorTo(row: atRow + i, col: col)
+                print(String(repeating: " ", count: usableWidth), terminator: "")
+            }
+        }
+    }
+    static func clearMessage(row: Int, col: Int, width: Int, color: TextColor = .white) {
+        drawMessage("", atRow: row, col: col, maxWidth: width, color: color)
+    }
 }
 
-// MARK: - Цветовые модели (остаются неизменными)
+// MARK: - Цветовые модели
 
 enum TextColor: Int {
     case black = 30
