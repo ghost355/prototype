@@ -1,4 +1,4 @@
-// GameState.swift
+// Core/GameState.swift
 
 struct GameState: Codable {
     let map: Map

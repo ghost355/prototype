@@ -1,3 +1,5 @@
+// Infrastructure/CLI/GameLoop.swift
+
 import Foundation
 
 enum GameLoop {
@@ -34,11 +36,16 @@ enum GameLoop {
 
         // Игровой цикл
         while state.info.isGameRunning {
-            showContextMenu(context: currentContext, state: state, errorMessage: &errorMessage)
-            clearInputPanel()
 
-            guard let input = readLine() else { break }
-            handleInput(input, context: &currentContext, state: &state, errorMessage: &errorMessage, drawing: drawing)
+            showInfo(textLines: infoText(for: currentContext, state: state))
+
+            showContextMenu(for: currentContext, state: state, errorMessage: &errorMessage)
+
+            clearInputPanel()
+            guard let input = readLine() else { continue }
+            handleInput(
+                input, for: &currentContext, state: &state, errorMessage: &errorMessage,
+                drawing: drawing)
         }
 
         // Завершение
@@ -53,14 +60,19 @@ enum GameLoop {
         Renderer.clearScreen()
         Renderer.hideCursor()
 
-        Renderer.drawInfoPanel(
-            state: state, startRow: UI.infoPanelRow, startCol: UI.startCol,
+        // Панель вывода информации
+        Renderer.drawBox(
+            startRow: UI.infoPanelRow, startCol: UI.startCol,
             width: UI.panelWidth, height: UI.infoPanelHeight
         )
+
+        // Панель меню
         Renderer.drawBox(
             startRow: UI.menuPanelRow, startCol: UI.startCol, width: UI.panelWidth,
             height: UI.menuPanelHeight
         )
+
+        // Панель ввода
         Renderer.drawBox(
             startRow: UI.inputPanelRow, startCol: UI.startCol, width: UI.panelWidth,
             height: UI.inputPanelHeight
@@ -68,6 +80,8 @@ enum GameLoop {
         Renderer.drawText(
             "> ", atRow: UI.inputPanelRow + 1, col: UI.startCol + 2, maxWidth: UI.panelWidth - 4
         )
+
+        // Панель подсказок
         Renderer.drawBox(
             startRow: UI.helpPanelRow, startCol: UI.startCol, width: UI.panelWidth,
             height: UI.helpPanelHeight
@@ -76,7 +90,23 @@ enum GameLoop {
 
     // MARK: - Меню
 
-    private static func showContextMenu(context: MenuContext, state: GameState, errorMessage: inout String?) {
+    private static func showInfo(textLines: [String]) {
+        Renderer.clearPanel(
+            startRow: UI.infoPanelRow, startCol: UI.startCol, width: UI.panelWidth,
+            height: UI.infoPanelHeight)
+        for (num, line) in textLines.enumerated() {
+
+            Renderer.drawText(
+                line, atRow: UI.infoPanelRow + 1 + num, col: UI.startCol + 2,
+                maxWidth: UI.panelWidth - 4,
+                color: .cyan)
+
+        }
+    }
+
+    private static func showContextMenu(
+        for context: MenuContext, state: GameState, errorMessage: inout String?
+    ) {
         let items = menuItems(for: context, state: state)
         let helpText = errorMessage ?? helpMessage(for: context)
 
@@ -87,7 +117,7 @@ enum GameLoop {
         for (index, item) in items.enumerated() {
             Renderer.drawText(
                 "\(index + 1). \(item)", atRow: UI.menuPanelRow + 1 + index,
-                col: UI.startCol + 2, maxWidth: UI.panelWidth - 4
+                col: UI.startCol + 2, maxWidth: UI.panelWidth - 4, color: .red
             )
         }
 
@@ -95,8 +125,9 @@ enum GameLoop {
             startRow: UI.helpPanelRow, startCol: UI.startCol, width: UI.panelWidth,
             height: UI.helpPanelHeight
         )
-        Renderer.drawMessage(
-            helpText, atRow: UI.helpPanelRow + 1, col: UI.startCol + 2,
+        Renderer.drawText(
+            helpText, atRow: UI.helpPanelRow + 1,
+            col: UI.startCol + 2,
             maxWidth: UI.panelWidth - 4
         )
 
@@ -117,6 +148,16 @@ enum GameLoop {
         }
     }
 
+    private static func infoText(for context: MenuContext, state: GameState) -> [String] {
+        switch context {
+        case .main:
+            return [
+                Renderer.coloredText(
+                    "TURN: \(state.info.turn) \t \(state.info.phase.name)", color: .green)
+            ]
+        }
+    }
+
     // MARK: - Ввод
 
     private static func clearInputPanel() {
@@ -131,14 +172,15 @@ enum GameLoop {
 
     private static func handleInput(
         _ choice: String,
-        context: inout MenuContext,
+        for context: inout MenuContext,
         state: inout GameState,
         errorMessage: inout String?,
         drawing: ActionCardDrawing
     ) {
         let items = menuItems(for: context, state: state)
         guard let choiceInt = Int(choice), choiceInt >= 1, choiceInt <= items.count else {
-            errorMessage = RendererFormatter.coloredText("Неверный выбор. Введите число от 1 до \(items.count).", color: .red)
+            errorMessage = Renderer.coloredText(
+                "Неверный выбор. Введите число от 1 до \(items.count).", color: .red)
             return
         }
 
@@ -147,7 +189,7 @@ enum GameLoop {
             switch choiceInt {
             case 1:
                 // Переход к следующей фазе
-                break
+                state = GameEngine.apply(state: state, action: .phase(.finish), drawing: drawing)
             case 2:
                 // Выход
                 state = GameEngine.apply(state: state, action: .game(.exit), drawing: drawing)
@@ -155,5 +197,6 @@ enum GameLoop {
                 break
             }
         }
+        clearInputPanel()
     }
 }

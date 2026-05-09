@@ -1,4 +1,4 @@
-// CLIHelpers.swift
+// Infrastructure/CLI/CLIHelpers.swift
 
 import Foundation
 

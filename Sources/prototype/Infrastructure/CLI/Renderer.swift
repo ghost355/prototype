@@ -66,6 +66,7 @@ enum Renderer {
         background: BgColor? = nil,
         style: TextStyle? = nil
     ) -> String {
+
         var codes: [Int] = []
         if let style = style { codes.append(style.rawValue) }
         codes.append(color.rawValue)
@@ -78,8 +79,13 @@ enum Renderer {
 
     /// Рисует прямоугольную рамку указанного цвета.
     static func drawBox(
-        startRow: Int, startCol: Int, width: Int, height: Int, color: TextColor = .white
+        startRow: Int,
+        startCol: Int,
+        width: Int,
+        height: Int,
+        color: TextColor = .white
     ) {
+
         guard width >= 2, height >= 2 else { return }
 
         let top = "┌" + String(repeating: "─", count: width - 2) + "┐"
@@ -89,7 +95,7 @@ enum Renderer {
         moveCursorTo(row: startRow, col: startCol)
         print(coloredText(top, color: color), terminator: "")
 
-        for row in 1 ..< height - 1 {
+        for row in 1..<height - 1 {
             moveCursorTo(row: startRow + row, col: startCol)
             print(coloredText(empty, color: color), terminator: "")
         }
@@ -100,17 +106,31 @@ enum Renderer {
     }
 
     /// Очищает внутреннюю область прямоугольника (рамка не трогается).
-    static func clearPanel(startRow: Int, startCol: Int, width: Int, height: Int) {
-        guard height > 2 else { return } // нет внутренней области
+    static func clearPanel(
+        startRow: Int,
+        startCol: Int,
+        width: Int,
+        height: Int
+    ) {
+        guard height >= 1, width > 2 else { return }
+
+        // если высота = 1, просто очищаем одну строку внутри рамки
+        if height == 1 {
+            moveCursorTo(row: startRow, col: startCol + 1)
+            print(String(repeating: " ", count: width - 2), terminator: "")
+            fflush(stdout)
+            return
+        }
+
+        guard height > 2 else { return }  // для высоты 2 нет внутренней области
 
         let emptyLine = String(repeating: " ", count: width - 2)
-        for row in 1 ..< height - 1 {
+        for row in 1..<height - 1 {
             moveCursorTo(row: startRow + row, col: startCol + 1)
             print(emptyLine, terminator: "")
         }
         fflush(stdout)
     }
-
     /// Выводит текст в указанной позиции, обрезая до maxWidth.
     static func drawText(
         _ text: String,
@@ -119,6 +139,7 @@ enum Renderer {
         maxWidth: Int,
         color: TextColor = .white
     ) {
+
         moveCursorTo(row: row, col: col)
         let truncated = String(text.prefix(maxWidth))
         print(coloredText(truncated, color: color), terminator: "")

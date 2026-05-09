@@ -1,4 +1,4 @@
-// GrindCoordinate.swift
+// Core/Model/GridCoordinate.swift
 
 struct GridCoordinate: Codable, Equatable, Hashable {
     let row: Int

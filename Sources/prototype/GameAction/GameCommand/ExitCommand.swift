@@ -1,4 +1,4 @@
-// ExitCommand.swift
+// GameAction/GameCommand/ExitCommand.swift
 
 enum ExitCommand {
     static func execute(state: GameState) -> GameState {

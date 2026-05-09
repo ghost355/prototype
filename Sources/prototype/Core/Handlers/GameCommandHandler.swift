@@ -1,4 +1,4 @@
-// GameCommandHandler.swfit
+// Handlers/GameCommandHandler.swift
 
 enum GameCommandHandler {
     static func execute(

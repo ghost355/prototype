@@ -1,4 +1,4 @@
-// UnitState.swift
+// Core/GameState+Structs/UnitState.swift
 
 struct UnitState: Codable {
     let unitPosition: [UnitID: GridCoordinate]

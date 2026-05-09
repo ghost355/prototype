@@ -1,6 +1,7 @@
-// GameInfo.swift
+// Core/GameState+Structs/GameInfo.swift
 
 struct GameInfo: Codable {
+    let missionType: MissionType
     let turn: Int
     let maxTurns: Int
     let phase: GamePhase
@@ -14,12 +15,14 @@ struct GameInfo: Codable {
 
 extension GameInfo {
     func copy(
+        missionType: MissionType? = nil,
         turn: Int? = nil,
         maxTurns: Int? = nil,
         phase: GamePhase? = nil,
         isGameRunning: Bool? = nil
     ) -> Self {
         Self(
+            missionType: missionType ?? self.missionType,
             turn: turn ?? self.turn,
             maxTurns: maxTurns ?? self.maxTurns,
             phase: phase ?? self.phase,

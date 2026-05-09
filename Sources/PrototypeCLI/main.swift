@@ -1,4 +1,5 @@
 import Foundation
+
 @testable import prototype
 
 /// Структура для нечистого провайдера колоды
@@ -14,17 +15,8 @@ struct GameApp {
     static func main() {
         // MARK: - Заглушки, пока нет Setup
 
-        let phases: [GamePhase] = [
-            .friendlyHQEvent,
-            .friendlyCommand,
-            .defensiveEnemyActivity,
-            .mutualCaptureRetreat,
-            .atCombatVehicleMovement,
-            .mutualCombat,
-            .cleanUp,
-        ]
-
         let info = GameInfo(
+            missionType: .offensive,
             turn: 1,
             maxTurns: 3,
             phase: .friendlyHQEvent,
@@ -34,7 +26,7 @@ struct GameApp {
         let map = Map(
             cells: [:]
         )
-        let units: [String: prototype.Unit] = [:] // уточняем тип для избежания неоднозначности
+        let units: [String: prototype.Unit] = [:]  // уточняем тип для избежания неоднозначности
         let unitState = UnitState(
             unitPosition: [:],
             unitExposed: [],
@@ -49,6 +41,7 @@ struct GameApp {
         )
 
         let drawing = StubDrawing()
+
         GameLoop.run(initialState: initialState, drawing: drawing)
     }
 }
