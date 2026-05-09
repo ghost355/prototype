@@ -30,15 +30,14 @@ enum PhaseProcessor {
 
     static func executePhase(state: GameState, drawing: ActionCardDrawing) -> GameState {
         switch state.info.phase {
-        // case .friendlyHQEvent:       return FriendlyHQEvent.execute(state: state, drawing: drawing)
-        // case .defensiveEnemyActivity: return DefensiveEnemyActivity.execute(state: state, drawing: drawing)
-        // case .friendlyCommand:       return FriendlyCommand.execute(state: state, drawing: drawing)
-        // case .offensivePatrolEnemyActivity: return OffensivePatrolEnemyActivity.execute(state: state, drawing: drawing)
-        // case .mutualCaptureRetreat:  return MutualCaptureRetreat.execute(state: state, drawing: drawing)
-        // case .atCombatVehicleMovement: return AtCombatVehicleMovement.execute(state: state, drawing: drawing)
-        // case .mutualCombat:          return MutualCombat.execute(state: state, drawing: drawing)
+        case .friendlyHQEvent: return FriendlyHQEvent.execute(state: state, drawing: drawing)
+        case .defensiveEnemyActivity: return DefensiveEnemyActivity.execute(state: state, drawing: drawing)
+        case .friendlyCommand: return FriendlyCommand.execute(state: state, drawing: drawing)
+        case .offensivePatrolEnemyActivity: return OffensivePatrolEnemyActivity.execute(state: state, drawing: drawing)
+        case .mutualCaptureRetreat: return MutualCaptureRetreat.execute(state: state, drawing: drawing)
+        case .atCombatVehicleMovement: return AtCombatVehicleMovement.execute(state: state, drawing: drawing)
+        case .mutualCombat: return MutualCombat.execute(state: state, drawing: drawing)
         case .cleanUp: return CleanUp.execute(state: state, drawing: drawing)
-        default: return state
         }
     }
 }
