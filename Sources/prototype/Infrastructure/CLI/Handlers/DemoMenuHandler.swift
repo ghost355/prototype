@@ -15,9 +15,6 @@ enum DemoMenuHandler {
         case 2:
             // Действие для "Раздел 2" — пока ничего
             break
-        case 3:
-            // "Вернуться обратно"
-            context = .main
         default:
             break
         }

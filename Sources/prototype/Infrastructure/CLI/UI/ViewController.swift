@@ -35,32 +35,6 @@ enum ViewController {
         }
     }
 
-    static func showContextMenu(
-        for context: GameLoop.MenuContext, state: GameState, errorMessage: inout String?
-    ) {
-        let items = MenuText.items(for: context, state: state)
-        let helpText = errorMessage ?? MenuText.help(for: context)
-
-        Renderer.clearPanel(
-            startRow: LayoutConstants.menuRow, startCol: LayoutConstants.startCol,
-            width: LayoutConstants.panelWidth, height: LayoutConstants.menuHeight)
-        for (index, item) in items.enumerated() {
-            Renderer.drawText(
-                "\(index + 1). \(item)",
-                atRow: LayoutConstants.menuRow + 1 + index,
-                col: LayoutConstants.startCol + 2, maxWidth: LayoutConstants.panelWidth - 4,
-                color: .red)
-        }
-
-        Renderer.clearPanel(
-            startRow: LayoutConstants.helpRow, startCol: LayoutConstants.startCol,
-            width: LayoutConstants.panelWidth, height: LayoutConstants.helpHeight)
-        Renderer.drawText(
-            helpText, atRow: LayoutConstants.helpRow + 1,
-            col: LayoutConstants.startCol + 2, maxWidth: LayoutConstants.panelWidth - 4)
-        errorMessage = nil
-    }
-
     static func clearInputPanel() {
         Renderer.clearPanel(
             startRow: LayoutConstants.inputRow + 1, startCol: LayoutConstants.startCol + 2,

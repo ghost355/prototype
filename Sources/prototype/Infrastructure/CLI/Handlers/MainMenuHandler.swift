@@ -13,8 +13,6 @@ enum MainMenuHandler {
             state = GameEngine.apply(state: state, action: .phase(.finish), drawing: drawing)
         case 2:
             context = .demo
-        case 3:
-            state = GameEngine.apply(state: state, action: .game(.exit), drawing: drawing)
         default:
             break
         }
