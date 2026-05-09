@@ -197,6 +197,5 @@ enum GameLoop {
                 break
             }
         }
-        clearInputPanel()
     }
 }
