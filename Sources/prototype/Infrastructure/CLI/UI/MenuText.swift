@@ -25,7 +25,10 @@ enum MenuText {
             return [
                 Renderer.coloredText(
                     "ХОД: \(state.info.turn) \t \(state.info.phase.name)", color: .green
-                )
+                ),
+                Renderer.coloredText(
+                    "\(state.debugMessage)", color: .magenta
+                ),
             ]
         }
     }

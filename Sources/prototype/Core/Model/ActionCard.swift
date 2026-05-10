@@ -8,7 +8,7 @@ struct ActionCard: Codable, Equatable {
     let atNumber: Int
     let icons: Set<ActionIcon>
     let combatResults: [Int: CombatResult]
-    let hitEffects: [ExperienceLevel: [HitEffect]]
+    let hitEffects: [HitEffectEntry]
     let randomNumbers: [Int]
 }
 
@@ -21,7 +21,7 @@ extension ActionCard {
         return randomNumbers[index]
     }
 
-    func hasIcon(icon: ActionIcon) -> Bool {
+    func hasIcon(_ icon: ActionIcon) -> Bool {
         icons.contains(icon)
     }
 }

@@ -12,8 +12,13 @@ enum GameLoop {
         var currentContext: MenuContext = .main
         var errorMessage: String?
         ViewController.initializeUI(state: state)
+        Renderer.moveCursorTo(row: 40, col: 10)
 
         while state.info.isGameRunning {
+
+            // Выполняем логику текущей фазы (если она ещё не выполнена)
+            state = PhaseProcessor.executePhase(state: state, drawing: drawing)
+
             ViewController.showInfo(textLines: MenuText.info(for: currentContext, state: state))
             // Вызываем свой showContextMenu
             showContextMenu(for: currentContext, state: state, errorMessage: &errorMessage)

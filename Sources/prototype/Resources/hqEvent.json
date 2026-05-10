@@ -1,0 +1,21 @@
+{
+  "diceSides": 10,
+  "events": [
+    {
+      "name": "Situation Report",
+      "slots": [
+        { "fromTurn": 2, "toTurn": 4, "rangeString": "1/10" },
+        { "fromTurn": 5, "toTurn": 7, "rangeString": "1/10" },
+        { "fromTurn": 8, "toTurn": 10, "rangeString": "1/10" }
+      ]
+    },
+    {
+      "name": "Comm Trouble",
+      "slots": [
+        { "fromTurn": 2, "toTurn": 4, "rangeString": "1/10" },
+        { "fromTurn": 5, "toTurn": 7, "rangeString": "3/10" },
+        { "fromTurn": 8, "toTurn": 10, "rangeString": "3/10" }
+      ]
+    }
+  ]
+}

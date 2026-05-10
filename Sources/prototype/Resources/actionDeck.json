@@ -1,0 +1,869 @@
+[
+  {
+    "id": 1,
+    "activatedCommands": 6,
+    "initiativeCommands": 4,
+    "atNumber": 9,
+    "icons": ["cover", "hqEvent", "crosshairs"],
+    "randomNumbers": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    "combatResults": {
+      "-4": "miss", "-3": "miss", "-2": "miss", "-1": "miss", "0": "miss",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty", "casualty"] },
+      { "experience": "line", "effects": ["casualty", "casualty"] },
+      { "experience": "green", "effects": ["casualty", "casualty"] }
+    ]
+  },
+  {
+    "id": 2,
+    "activatedCommands": 6,
+    "initiativeCommands": 4,
+    "atNumber": 9,
+    "icons": ["contact", "infiltrate"],
+    "randomNumbers": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    "combatResults": {
+      "-4": "pin", "-3": "miss", "-2": "miss", "-1": "miss", "0": "miss",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty", "paralyzed"] },
+      { "experience": "line", "effects": ["casualty", "paralyzed"] },
+      { "experience": "green", "effects": ["casualty", "casualty"] }
+    ]
+  },
+  {
+    "id": 3,
+    "activatedCommands": 5,
+    "initiativeCommands": 4,
+    "atNumber": 9,
+    "icons": ["cover", "grenade"],
+    "randomNumbers": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    "combatResults": {
+      "-4": "pin", "-3": "pin", "-2": "miss", "-1": "miss", "0": "miss",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty", "paralyzed"] },
+      { "experience": "line", "effects": ["casualty", "paralyzed"] },
+      { "experience": "green", "effects": ["casualty", "paralyzed"] }
+    ]
+  },
+  {
+    "id": 4,
+    "activatedCommands": 5,
+    "initiativeCommands": 4,
+    "atNumber": 9,
+    "icons": ["burst"],
+    "randomNumbers": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    "combatResults": {
+      "-4": "pin", "-3": "pin", "-2": "pin", "-1": "miss", "0": "miss",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty", "litter"] },
+      { "experience": "line", "effects": ["casualty", "litter"] },
+      { "experience": "green", "effects": ["casualty", "paralyzed"] }
+    ]
+  },
+  {
+    "id": 5,
+    "activatedCommands": 5,
+    "initiativeCommands": 3,
+    "atNumber": 9,
+    "icons": ["hqEvent", "crosshairs"],
+    "randomNumbers": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+    "combatResults": {
+      "-4": "pin", "-3": "pin", "-2": "pin", "-1": "miss", "0": "miss",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty", "litter"] },
+      { "experience": "line", "effects": ["casualty", "litter"] },
+      { "experience": "green", "effects": ["casualty", "paralyzed"] }
+    ]
+  },
+  {
+    "id": 6,
+    "activatedCommands": 5,
+    "initiativeCommands": 3,
+    "atNumber": 8,
+    "icons": ["cover", "infiltrate"],
+    "randomNumbers": [1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2],
+    "combatResults": {
+      "-4": "pin", "-3": "pin", "-2": "pin", "-1": "pin", "0": "miss",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty", "fireteam"] },
+      { "experience": "line", "effects": ["casualty", "litter"] },
+      { "experience": "green", "effects": ["casualty", "litter"] }
+    ]
+  },
+  {
+    "id": 7,
+    "activatedCommands": 5,
+    "initiativeCommands": 3,
+    "atNumber": 8,
+    "icons": ["cover", "grenade"],
+    "randomNumbers": [1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2],
+    "combatResults": {
+      "-4": "pin", "-3": "pin", "-2": "pin", "-1": "pin", "0": "miss",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty", "fireteam"] },
+      { "experience": "line", "effects": ["casualty", "fireteam"] },
+      { "experience": "green", "effects": ["casualty", "litter"] }
+    ]
+  },
+  {
+    "id": 8,
+    "activatedCommands": 5,
+    "initiativeCommands": 3,
+    "atNumber": 8,
+    "icons": ["burst"],
+    "randomNumbers": [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2],
+    "combatResults": {
+      "-4": "pin", "-3": "pin", "-2": "pin", "-1": "pin", "0": "miss",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty", "fireteam"] },
+      { "experience": "line", "effects": ["casualty", "fireteam"] },
+      { "experience": "green", "effects": ["casualty", "fireteam"] }
+    ]
+  },
+  {
+    "id": 9,
+    "activatedCommands": 5,
+    "initiativeCommands": 3,
+    "atNumber": 8,
+    "icons": ["cover", "crosshairs"],
+    "randomNumbers": [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3],
+    "combatResults": {
+      "-4": "pin", "-3": "pin", "-2": "pin", "-1": "pin", "0": "miss",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "casualty"] },
+      { "experience": "line", "effects": ["paralyzed", "casualty"] },
+      { "experience": "green", "effects": ["casualty", "fireteam"] }
+    ]
+  },
+  {
+    "id": 10,
+    "activatedCommands": 5,
+    "initiativeCommands": 3,
+    "atNumber": 8,
+    "icons": ["cover", "infiltrate", "hqEvent"],
+    "randomNumbers": [1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3],
+    "combatResults": {
+      "-4": "pin", "-3": "pin", "-2": "pin", "-1": "pin", "0": "miss",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "casualty"] },
+      { "experience": "line", "effects": ["paralyzed", "casualty"] },
+      { "experience": "green", "effects": ["paralyzed", "casualty"] }
+    ]
+  },
+  {
+    "id": 11,
+    "activatedCommands": 4,
+    "initiativeCommands": 3,
+    "atNumber": 7,
+    "icons": ["contact", "grenade"],
+    "randomNumbers": [1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3],
+    "combatResults": {
+      "-4": "hit", "-3": "pin", "-2": "pin", "-1": "pin", "0": "pin",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "casualty"] },
+      { "experience": "line", "effects": ["paralyzed", "casualty"] },
+      { "experience": "green", "effects": ["paralyzed", "casualty"] }
+    ]
+  },
+  {
+    "id": 12,
+    "activatedCommands": 4,
+    "initiativeCommands": 3,
+    "atNumber": 7,
+    "icons": ["cover", "burst"],
+    "randomNumbers": [1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3],
+    "combatResults": {
+      "-4": "hit", "-3": "pin", "-2": "pin", "-1": "pin", "0": "pin",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["litter", "casualty"] },
+      { "experience": "line", "effects": ["litter", "casualty"] },
+      { "experience": "green", "effects": ["paralyzed", "casualty"] }
+    ]
+  },
+  {
+    "id": 13,
+    "activatedCommands": 4,
+    "initiativeCommands": 3,
+    "atNumber": 7,
+    "icons": ["cover", "crosshairs"],
+    "randomNumbers": [1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4],
+    "combatResults": {
+      "-4": "hit", "-3": "pin", "-2": "pin", "-1": "pin", "0": "pin",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["litter", "casualty"] },
+      { "experience": "line", "effects": ["litter", "casualty"] },
+      { "experience": "green", "effects": ["paralyzed", "casualty"] }
+    ]
+  },
+  {
+    "id": 14,
+    "activatedCommands": 4,
+    "initiativeCommands": 3,
+    "atNumber": 7,
+    "icons": ["infiltrate"],
+    "randomNumbers": [1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4],
+    "combatResults": {
+      "-4": "hit", "-3": "pin", "-2": "pin", "-1": "pin", "0": "pin",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["litter", "casualty"] },
+      { "experience": "line", "effects": ["litter", "casualty"] },
+      { "experience": "green", "effects": ["paralyzed", "casualty"] }
+    ]
+  },
+  {
+    "id": 15,
+    "activatedCommands": 4,
+    "initiativeCommands": 3,
+    "atNumber": 7,
+    "icons": ["cover", "grenade", "hqEvent"],
+    "randomNumbers": [1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4],
+    "combatResults": {
+      "-4": "hit", "-3": "pin", "-2": "pin", "-1": "pin", "0": "pin",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["fireteam", "casualty"] },
+      { "experience": "line", "effects": ["litter", "casualty"] },
+      { "experience": "green", "effects": ["litter", "casualty"] }
+    ]
+  },
+  {
+    "id": 16,
+    "activatedCommands": 4,
+    "initiativeCommands": 3,
+    "atNumber": 6,
+    "icons": ["burst"],
+    "randomNumbers": [1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "pin", "-1": "pin", "0": "pin",
+      "1": "pin", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["fireteam", "casualty"] },
+      { "experience": "line", "effects": ["fireteam", "casualty"] },
+      { "experience": "green", "effects": ["litter", "casualty"] }
+    ]
+  },
+  {
+    "id": 17,
+    "activatedCommands": 4,
+    "initiativeCommands": 2,
+    "atNumber": 6,
+    "icons": ["contact", "crosshairs"],
+    "randomNumbers": [1, 2, 2, 2, 2, 3, 3, 4, 4, 4, 5],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "pin", "-1": "pin", "0": "pin",
+      "1": "pin", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["fireteam", "casualty"] },
+      { "experience": "line", "effects": ["fireteam", "casualty"] },
+      { "experience": "green", "effects": ["litter", "casualty"] }
+    ]
+  },
+  {
+    "id": 18,
+    "activatedCommands": 4,
+    "initiativeCommands": 2,
+    "atNumber": 6,
+    "icons": ["cover", "infiltrate"],
+    "randomNumbers": [1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "pin", "-1": "pin", "0": "pin",
+      "1": "pin", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["fireteam", "casualty"] },
+      { "experience": "line", "effects": ["fireteam", "casualty"] },
+      { "experience": "green", "effects": ["fireteam", "casualty"] }
+    ]
+  },
+  {
+    "id": 19,
+    "activatedCommands": 4,
+    "initiativeCommands": 2,
+    "atNumber": 6,
+    "icons": ["cover", "grenade"],
+    "randomNumbers": [1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "pin", "-1": "pin", "0": "pin",
+      "1": "pin", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "paralyzed"] },
+      { "experience": "line", "effects": ["paralyzed", "paralyzed"] },
+      { "experience": "green", "effects": ["fireteam", "casualty"] }
+    ]
+  },
+  {
+    "id": 20,
+    "activatedCommands": 4,
+    "initiativeCommands": 2,
+    "atNumber": 6,
+    "icons": ["burst", "hqEvent"],
+    "randomNumbers": [1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "pin", "-1": "pin", "0": "pin",
+      "1": "pin", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "paralyzed"] },
+      { "experience": "line", "effects": ["paralyzed", "paralyzed"] },
+      { "experience": "green", "effects": ["fireteam", "casualty"] }
+    ]
+  },
+  {
+    "id": 21,
+    "activatedCommands": 4,
+    "initiativeCommands": 2,
+    "atNumber": 5,
+    "icons": ["cover", "crosshairs"],
+    "randomNumbers": [1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "pin", "0": "pin",
+      "1": "pin", "2": "pin", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "paralyzed"] },
+      { "experience": "line", "effects": ["paralyzed", "paralyzed"] },
+      { "experience": "green", "effects": ["paralyzed", "paralyzed"] }
+    ]
+  },
+  {
+    "id": 22,
+    "activatedCommands": 4,
+    "initiativeCommands": 2,
+    "atNumber": 5,
+    "icons": ["infiltrate", "hqEvent"],
+    "randomNumbers": [1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "pin", "0": "pin",
+      "1": "pin", "2": "pin", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "litter"] },
+      { "experience": "line", "effects": ["paralyzed", "litter"] },
+      { "experience": "green", "effects": ["paralyzed", "paralyzed"] }
+    ]
+  },
+  {
+    "id": 23,
+    "activatedCommands": 4,
+    "initiativeCommands": 2,
+    "atNumber": 5,
+    "icons": ["cover", "grenade"],
+    "randomNumbers": [1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "pin", "0": "pin",
+      "1": "pin", "2": "pin", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "litter"] },
+      { "experience": "line", "effects": ["paralyzed", "litter"] },
+      { "experience": "green", "effects": ["paralyzed", "paralyzed"] }
+    ]
+  },
+  {
+    "id": 24,
+    "activatedCommands": 4,
+    "initiativeCommands": 2,
+    "atNumber": 5,
+    "icons": ["cover", "burst"],
+    "randomNumbers": [1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "pin", "0": "pin",
+      "1": "pin", "2": "pin", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "litter"] },
+      { "experience": "line", "effects": ["paralyzed", "litter"] },
+      { "experience": "green", "effects": ["paralyzed", "paralyzed"] }
+    ]
+  },
+  {
+    "id": 25,
+    "activatedCommands": 3,
+    "initiativeCommands": 2,
+    "atNumber": 5,
+    "icons": ["crosshairs", "hqEvent"],
+    "randomNumbers": [1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "pin", "0": "pin",
+      "1": "pin", "2": "pin", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "fireteam"] },
+      { "experience": "line", "effects": ["paralyzed", "fireteam"] },
+      { "experience": "green", "effects": ["paralyzed", "paralyzed"] }
+    ]
+  },
+  {
+    "id": 26,
+    "activatedCommands": 3,
+    "initiativeCommands": 2,
+    "atNumber": 4,
+    "icons": ["contact", "infiltrate"],
+    "randomNumbers": [2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "pin",
+      "1": "pin", "2": "pin", "3": "pin", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "fireteam"] },
+      { "experience": "line", "effects": ["paralyzed", "fireteam"] },
+      { "experience": "green", "effects": ["paralyzed", "litter"] }
+    ]
+  },
+  {
+    "id": 27,
+    "activatedCommands": 3,
+    "initiativeCommands": 2,
+    "atNumber": 4,
+    "icons": ["cover", "grenade"],
+    "randomNumbers": [2, 2, 3, 3, 4, 4, 5, 6, 6, 7, 7],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "pin",
+      "1": "pin", "2": "pin", "3": "pin", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "fireteam"] },
+      { "experience": "line", "effects": ["paralyzed", "fireteam"] },
+      { "experience": "green", "effects": ["paralyzed", "litter"] }
+    ]
+  },
+  {
+    "id": 28,
+    "activatedCommands": 3,
+    "initiativeCommands": 2,
+    "atNumber": 4,
+    "icons": ["cover", "burst"],
+    "randomNumbers": [2, 2, 3, 3, 4, 4, 5, 6, 6, 7, 7],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "pin",
+      "1": "pin", "2": "pin", "3": "pin", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed", "fireteam"] },
+      { "experience": "line", "effects": ["paralyzed", "fireteam"] },
+      { "experience": "green", "effects": ["paralyzed", "litter"] }
+    ]
+  },
+  {
+    "id": 29,
+    "activatedCommands": 3,
+    "initiativeCommands": 2,
+    "atNumber": 4,
+    "icons": ["crosshairs"],
+    "randomNumbers": [2, 2, 3, 3, 4, 5, 5, 6, 6, 7, 8],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "pin",
+      "1": "pin", "2": "pin", "3": "pin", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty"] },
+      { "experience": "line", "effects": ["casualty"] },
+      { "experience": "green", "effects": ["paralyzed", "litter"] }
+    ]
+  },
+  {
+    "id": 30,
+    "activatedCommands": 3,
+    "initiativeCommands": 2,
+    "atNumber": 4,
+    "icons": ["cover", "infiltrate"],
+    "randomNumbers": [2, 2, 3, 3, 4, 5, 5, 6, 6, 7, 8],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "pin",
+      "1": "pin", "2": "pin", "3": "pin", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty"] },
+      { "experience": "line", "effects": ["casualty"] },
+      { "experience": "green", "effects": ["paralyzed", "fireteam"] }
+    ]
+  },
+  {
+    "id": 31,
+    "activatedCommands": 3,
+    "initiativeCommands": 2,
+    "atNumber": 3,
+    "icons": ["cover", "grenade"],
+    "randomNumbers": [2, 2, 3, 4, 4, 5, 5, 6, 7, 8, 8],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "pin", "2": "pin", "3": "pin", "4": "pin", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty"] },
+      { "experience": "line", "effects": ["casualty"] },
+      { "experience": "green", "effects": ["paralyzed", "fireteam"] }
+    ]
+  },
+  {
+    "id": 32,
+    "activatedCommands": 3,
+    "initiativeCommands": 2,
+    "atNumber": 3,
+    "icons": ["burst", "hqEvent"],
+    "randomNumbers": [2, 2, 3, 4, 4, 5, 6, 7, 7, 8, 8],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "pin", "2": "pin", "3": "pin", "4": "pin", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty"] },
+      { "experience": "line", "effects": ["casualty"] },
+      { "experience": "green", "effects": ["paralyzed", "fireteam"] }
+    ]
+  },
+  {
+    "id": 33,
+    "activatedCommands": 3,
+    "initiativeCommands": 2,
+    "atNumber": 3,
+    "icons": ["cover", "crosshairs"],
+    "randomNumbers": [2, 2, 3, 4, 5, 5, 6, 7, 7, 8, 9],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "pin", "2": "pin", "3": "pin", "4": "pin", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["casualty"] },
+      { "experience": "line", "effects": ["casualty"] },
+      { "experience": "green", "effects": ["casualty"] }
+    ]
+  },
+  {
+    "id": 34,
+    "activatedCommands": 3,
+    "initiativeCommands": 2,
+    "atNumber": 3,
+    "icons": ["cover", "infiltrate"],
+    "randomNumbers": [2, 3, 3, 4, 5, 5, 6, 7, 7, 8, 9],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "pin", "2": "pin", "3": "pin", "4": "pin", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed"] },
+      { "experience": "line", "effects": ["casualty"] },
+      { "experience": "green", "effects": ["casualty"] }
+    ]
+  },
+  {
+    "id": 35,
+    "activatedCommands": 3,
+    "initiativeCommands": 1,
+    "atNumber": 3,
+    "icons": ["cover", "grenade", "hqEvent"],
+    "randomNumbers": [2, 3, 3, 4, 5, 5, 6, 7, 7, 9, 9],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "pin", "2": "pin", "3": "pin", "4": "pin", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed"] },
+      { "experience": "line", "effects": ["paralyzed"] },
+      { "experience": "green", "effects": ["casualty"] }
+    ]
+  },
+  {
+    "id": 36,
+    "activatedCommands": 3,
+    "initiativeCommands": 1,
+    "atNumber": 2,
+    "icons": ["cover", "burst"],
+    "randomNumbers": [2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "pin", "3": "pin", "4": "pin", "5": "pin", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed"] },
+      { "experience": "line", "effects": ["paralyzed"] },
+      { "experience": "green", "effects": ["casualty"] }
+    ]
+  },
+  {
+    "id": 37,
+    "activatedCommands": 2,
+    "initiativeCommands": 1,
+    "atNumber": 2,
+    "icons": ["cover", "crosshairs"],
+    "randomNumbers": [2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 10],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "pin", "3": "pin", "4": "pin", "5": "pin", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed"] },
+      { "experience": "line", "effects": ["paralyzed"] },
+      { "experience": "green", "effects": ["casualty"] }
+    ]
+  },
+  {
+    "id": 38,
+    "activatedCommands": 2,
+    "initiativeCommands": 1,
+    "atNumber": 2,
+    "icons": ["infiltrate", "hqEvent"],
+    "randomNumbers": [2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "pin", "3": "pin", "4": "pin", "5": "pin", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["paralyzed"] },
+      { "experience": "line", "effects": ["paralyzed"] },
+      { "experience": "green", "effects": ["casualty"] }
+    ]
+  },
+  {
+    "id": 39,
+    "activatedCommands": 2,
+    "initiativeCommands": 1,
+    "atNumber": 2,
+    "icons": ["cover", "grenade"],
+    "randomNumbers": [2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "pin", "3": "pin", "4": "pin", "5": "pin", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["litter"] },
+      { "experience": "line", "effects": ["paralyzed"] },
+      { "experience": "green", "effects": ["paralyzed"] }
+    ]
+  },
+  {
+    "id": 40,
+    "activatedCommands": 2,
+    "initiativeCommands": 1,
+    "atNumber": 2,
+    "icons": ["contact", "burst"],
+    "randomNumbers": [2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "pin", "3": "pin", "4": "pin", "5": "pin", "6": "pin"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["litter"] },
+      { "experience": "line", "effects": ["paralyzed"] },
+      { "experience": "green", "effects": ["paralyzed"] }
+    ]
+  },
+  {
+    "id": 41,
+    "activatedCommands": 2,
+    "initiativeCommands": 1,
+    "atNumber": 1,
+    "icons": ["contact", "crosshairs"],
+    "randomNumbers": [2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "hit", "3": "pin", "4": "pin", "5": "pin", "6": "pin"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["litter"] },
+      { "experience": "line", "effects": ["litter"] },
+      { "experience": "green", "effects": ["paralyzed"] }
+    ]
+  },
+  {
+    "id": 42,
+    "activatedCommands": 2,
+    "initiativeCommands": 1,
+    "atNumber": 1,
+    "icons": ["cover", "tripleBurst"],
+    "randomNumbers": [2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 11],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "hit", "3": "pin", "4": "pin", "5": "pin", "6": "pin"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["litter"] },
+      { "experience": "line", "effects": ["litter"] },
+      { "experience": "green", "effects": ["paralyzed"] }
+    ]
+  },
+  {
+    "id": 43,
+    "activatedCommands": 2,
+    "initiativeCommands": 1,
+    "atNumber": 1,
+    "icons": ["cover", "crosshairs", "hqEvent"],
+    "randomNumbers": [2, 3, 4, 5, 6, 7, 7, 8, 9, 10, 11],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "hit", "3": "pin", "4": "pin", "5": "pin", "6": "pin"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["fireteam"] },
+      { "experience": "line", "effects": ["litter"] },
+      { "experience": "green", "effects": ["paralyzed"] }
+    ]
+  },
+  {
+    "id": 44,
+    "activatedCommands": 2,
+    "initiativeCommands": 1,
+    "atNumber": 1,
+    "icons": ["tripleBurst"],
+    "randomNumbers": [2, 3, 4, 5, 6, 7, 7, 9, 9, 10, 11],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "hit", "3": "pin", "4": "pin", "5": "pin", "6": "pin"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["fireteam"] },
+      { "experience": "line", "effects": ["litter"] },
+      { "experience": "green", "effects": ["paralyzed"] }
+    ]
+  },
+  {
+    "id": 45,
+    "activatedCommands": 2,
+    "initiativeCommands": 1,
+    "atNumber": 1,
+    "icons": ["cover", "crosshairs"],
+    "randomNumbers": [2, 3, 4, 5, 6, 7, 8, 9, 9, 10, 11],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "hit", "3": "pin", "4": "pin", "5": "pin", "6": "pin"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["fireteam"] },
+      { "experience": "line", "effects": ["fireteam"] },
+      { "experience": "green", "effects": ["litter"] }
+    ]
+  },
+  {
+    "id": 46,
+    "activatedCommands": 2,
+    "initiativeCommands": 1,
+    "atNumber": 0,
+    "icons": ["tripleBurst"],
+    "randomNumbers": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "hit", "3": "hit", "4": "pin", "5": "pin", "6": "pin"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["fireteam"] },
+      { "experience": "line", "effects": ["fireteam"] },
+      { "experience": "green", "effects": ["litter"] }
+    ]
+  },
+  {
+    "id": 47,
+    "activatedCommands": 1,
+    "initiativeCommands": 0,
+    "atNumber": 0,
+    "icons": ["contact", "hqEvent", "crosshairs"],
+    "randomNumbers": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "hit", "3": "hit", "4": "pin", "5": "pin", "6": "pin"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["fireteam"] },
+      { "experience": "line", "effects": ["fireteam"] },
+      { "experience": "green", "effects": ["litter"] }
+    ]
+  },
+  {
+    "id": 48,
+    "activatedCommands": 1,
+    "initiativeCommands": 0,
+    "atNumber": 0,
+    "icons": ["tripleBurst"],
+    "randomNumbers": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "hit", "3": "hit", "4": "hit", "5": "pin", "6": "pin"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["assault"] },
+      { "experience": "line", "effects": ["fireteam"] },
+      { "experience": "green", "effects": ["fireteam"] }
+    ]
+  },
+  {
+    "id": 49,
+    "activatedCommands": 1,
+    "initiativeCommands": 0,
+    "atNumber": 0,
+    "icons": ["jam"],
+    "randomNumbers": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "hit", "3": "hit", "4": "hit", "5": "hit", "6": "pin"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["assault"] },
+      { "experience": "line", "effects": ["assault"] },
+      { "experience": "green", "effects": ["fireteam"] }
+    ]
+  },
+  {
+    "id": 50,
+    "activatedCommands": 1,
+    "initiativeCommands": 0,
+    "atNumber": 0,
+    "icons": ["short"],
+    "randomNumbers": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "combatResults": {
+      "-4": "hit", "-3": "hit", "-2": "hit", "-1": "hit", "0": "hit",
+      "1": "hit", "2": "hit", "3": "hit", "4": "hit", "5": "hit", "6": "hit"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["assault"] },
+      { "experience": "line", "effects": ["assault"] },
+      { "experience": "green", "effects": ["assault"] }
+    ]
+  },
+  {
+    "id": 51,
+    "activatedCommands": 0,
+    "initiativeCommands": 0,
+    "atNumber": 0,
+    "icons": [],
+    "randomNumbers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "combatResults": {
+      "-4": "miss", "-3": "miss", "-2": "miss", "-1": "miss", "0": "miss",
+      "1": "miss", "2": "miss", "3": "miss", "4": "miss", "5": "miss", "6": "miss"
+    },
+    "hitEffects": [
+      { "experience": "veteran", "effects": ["assault"] },
+      { "experience": "line", "effects": ["assault"] },
+      { "experience": "green", "effects": ["assault"] }
+    ]
+  }
+]

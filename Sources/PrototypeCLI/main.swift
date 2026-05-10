@@ -1,13 +1,5 @@
 import Foundation
-
 @testable import prototype
-
-/// Структура для нечистого провайдера колоды
-struct StubDrawing: ActionCardDrawing {
-    func drawCards(count _: Int) -> [ActionCard] {
-        []
-    }
-}
 
 /// Глобальная точка входа
 @main
@@ -26,21 +18,25 @@ struct GameApp {
         let map = Map(
             cells: [:]
         )
-        let units: [String: prototype.Unit] = [:]  // уточняем тип для избежания неоднозначности
+        let units: [String: prototype.Unit] = [:] // уточняем тип для избежания неоднозначности
         let unitState = UnitState(
             unitPosition: [:],
             unitExposed: [],
             unitPinned: []
         )
 
+        let table: HQEventTable = loadJSON("hqEvent", as: HQEventTable.self, from: .module)
+
         let initialState = GameState(
             map: map,
             info: info,
             units: units,
-            unitState: unitState
+            unitState: unitState,
+            debugMessage: "Нет сообщений",
+            table: table
         )
 
-        let drawing = StubDrawing()
+        let drawing = ActionDeck()
 
         GameLoop.run(initialState: initialState, drawing: drawing)
     }

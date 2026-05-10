@@ -1,9 +1,19 @@
 // Core/Enum/HitEffect.swift
 
 enum HitEffect: String, Codable {
-    case fireteam = "F"
-    case assault = "A"
-    case litter = "L"
-    case paralyzed = "P"
-    case casualty = "C"
+    case fireteam
+    case assault
+    case litter
+    case paralyzed
+    case casualty
+
+    var letter: String {
+        switch self {
+        case .fireteam: return "F"
+        case .assault: return "A"
+        case .litter: return "L"
+        case .paralyzed: return "P"
+        case .casualty: return "C"
+        }
+    }
 }
