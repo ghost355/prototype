@@ -1,4 +1,5 @@
 import Foundation
+
 @testable import prototype
 
 /// Глобальная точка входа
@@ -16,13 +17,15 @@ struct GameApp {
         )
 
         let map = Map(
-            cells: [:]
+            rows: 3,
+            columns: 3
         )
-        let units: [String: prototype.Unit] = [:] // уточняем тип для избежания неоднозначности
+        let units: [String: prototype.Unit] = [:]  // уточняем тип для избежания неоднозначности
         let unitState = UnitState(
             unitPosition: [:],
             unitExposed: [],
-            unitPinned: []
+            unitPinned: [],
+            commandState: [:]
         )
 
         let table: HQEventTable = loadJSON("hqEvent", as: HQEventTable.self, from: .module)

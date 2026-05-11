@@ -1,6 +1,6 @@
 // CommandState.swift
 
-struct CommandState {
+struct CommandState: Codable {
     let activated: Int
     let saved: Int
     let isActivated: Bool

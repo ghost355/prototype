@@ -11,12 +11,14 @@ extension UnitState {
     func copy(
         unitPosition: [UnitID: GridCoordinate]? = nil,
         unitExposed: Set<UnitID>? = nil,
-        unitPinned: Set<UnitID>? = nil
+        unitPinned: Set<UnitID>? = nil,
+        commandState: [UnitID: CommandState]? = nil
     ) -> Self {
         Self(
             unitPosition: unitPosition ?? self.unitPosition,
             unitExposed: unitExposed ?? self.unitExposed,
-            unitPinned: unitPinned ?? self.unitPinned
+            unitPinned: unitPinned ?? self.unitPinned,
+            commandState: commandState ?? self.commandState
         )
     }
 }
