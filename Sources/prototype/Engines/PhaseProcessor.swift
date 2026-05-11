@@ -5,7 +5,6 @@ enum PhaseProcessor {
         guard let currentIndex = state.info.missionType.phaseSequence.firstIndex(of: currentPhase) else {
             return state
         }
-        
 
         let nextIndex = currentIndex + 1
 
