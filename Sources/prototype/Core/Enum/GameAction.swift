@@ -1,10 +1,12 @@
-// GameAction.swift
+// Core/Enum/GameAction.swift
 
 enum GameAction: Equatable {
+    enum Game: Equatable {
+        case exit
+    }
 
     enum Phase: Equatable {
         case finish
-        case advance(to: GamePhase)
     }
 
     enum Movement: Equatable {
@@ -71,6 +73,7 @@ enum GameAction: Equatable {
         case grenadeAttack(unitID: UnitID, target: UnitID)  // Вражеская гранатная атака
     }
 
+    case game(Game)
     case phase(Phase)
     case movement(Movement)
     case combat(Combat)

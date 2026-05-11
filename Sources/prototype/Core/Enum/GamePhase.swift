@@ -1,4 +1,4 @@
-// GameUnit.swift
+// Core/Enum/GamePhase.swift
 
 enum GamePhase: String, Codable {
     case friendlyHQEvent
@@ -20,6 +20,15 @@ enum GamePhase: String, Codable {
         case .atCombatVehicleMovement: return "Фаза ПТ-боя и движения техники"
         case .mutualCombat: return "Фаза обоюдного боя"
         case .cleanUp: return "Фаза очистки"
+        }
+    }
+
+    var isInteractive: Bool {
+        switch self {
+        case .friendlyCommand, .atCombatVehicleMovement:
+            return true
+        default:
+            return false
         }
     }
 }

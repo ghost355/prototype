@@ -1,4 +1,4 @@
-// PhaseHandler.swift
+// Handlers/PhaseActionHandler.swift
 
 enum PhaseHandler {
     static func execute(
@@ -10,9 +10,6 @@ enum PhaseHandler {
         switch action {
         case .finish:
             return FinishPhaseCommand.execute(state: state)
-
-        case .advance(let phase):
-            return AdvancedPhaseCommand.execute(state: state, to: phase)
         }
     }
 }

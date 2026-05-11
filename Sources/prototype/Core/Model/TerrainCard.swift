@@ -1,4 +1,4 @@
-// TerrainCard.swift
+// Core/Model/TerrainCard.swift
 
 struct TerrainCard: Codable {
     let id: Int

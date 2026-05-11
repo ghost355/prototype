@@ -1,9 +1,9 @@
-// RallyHandler.swift
+// Handlers/EnemyHandler.swift
 
-enum RallyHandler {
+enum EnemyHandler {
     static func execute(
         state: GameState,
-        action: GameAction.Rally,
+        action: GameAction.Enemy,
         drawing: ActionCardDrawing
     ) -> GameState {
 

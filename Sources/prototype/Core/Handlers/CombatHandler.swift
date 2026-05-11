@@ -1,9 +1,9 @@
-// EnemyHandler.swift
+// Handlers/CombatHandler.swift
 
-enum EnemyHandler {
+enum CombatHandler {
     static func execute(
         state: GameState,
-        action: GameAction.Enemy,
+        action: GameAction.Combat,
         drawing: ActionCardDrawing
     ) -> GameState {
 

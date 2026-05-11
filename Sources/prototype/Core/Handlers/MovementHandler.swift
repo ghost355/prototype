@@ -1,9 +1,9 @@
-// ControlHandler.swift
+// Handlers/MovementHandler.swift
 
-enum ControlHandler {
+enum MovementHandler {
     static func execute(
         state: GameState,
-        action: GameAction.Control,
+        action: GameAction.Movement,
         drawing: ActionCardDrawing
     ) -> GameState {
 
