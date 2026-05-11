@@ -1,6 +1,6 @@
 // Core/GameState+Structs/UnitState.swift
 
-struct UnitState: Codable {
+struct UnitState: Codable, Equatable {
     let unitPosition: [UnitID: GridCoordinate]
     let unitExposed: Set<UnitID>
     let unitPinned: Set<UnitID>

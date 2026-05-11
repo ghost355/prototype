@@ -2,6 +2,6 @@
 
 typealias UnitID = String
 
-struct Unit: Codable {
+struct Unit: Codable, Equatable {
     let id: UnitID
 }

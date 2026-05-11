@@ -1,6 +1,6 @@
 // Core/GameState+Structs/GameInfo.swift
 
-struct GameInfo: Codable {
+struct GameInfo: Codable, Equatable {
     let missionType: MissionType
     let turn: Int
     let maxTurns: Int

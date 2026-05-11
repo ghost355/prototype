@@ -1,6 +1,6 @@
 // Core/GameTables/HQEventTable.swift
 
-struct HQEventTable: Codable {
+struct HQEventTable: Codable, Equatable {
     let diceSides: Int
     let events: [HQEventEntry]
 

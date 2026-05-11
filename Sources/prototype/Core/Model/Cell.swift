@@ -1,5 +1,5 @@
 // Core/Model/Cell.swift
 
-struct Cell: Codable {
+struct Cell: Codable, Equatable {
     let terrain: [TerrainCard]
 }

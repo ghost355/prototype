@@ -1,10 +1,11 @@
 // Core/Model/HQEventEntry.swift
-struct HQEventEntry: Codable {
+
+struct HQEventEntry: Codable, Equatable {
     let name: String
     let slots: [HQEventSlot]
 }
 
-struct HQEventSlot: Codable {
+struct HQEventSlot: Codable, Equatable {
     let fromTurn: Int
     let toTurn: Int
     let rangeString: String  // "1/2", "4/9"

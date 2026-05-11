@@ -1,6 +1,6 @@
 // Core/GameState+Structs/Map.swift
 
-struct Map: Codable {
+struct Map: Codable, Equatable {
     let cells: [GridCoordinate: Cell]
     let rows: Int
     let columns: Int

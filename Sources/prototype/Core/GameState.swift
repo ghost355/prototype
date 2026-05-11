@@ -1,6 +1,6 @@
 // Core/GameState.swift
 
-struct GameState: Codable {
+struct GameState: Codable, Equatable {
     let map: Map
     let info: GameInfo
     let units: [UnitID: Unit]
