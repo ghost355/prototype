@@ -15,6 +15,12 @@ struct Map: Codable {
         self.minColumn = 0
         self.maxColumn = columns - 1
         self.maxRow = rows
-        self.cells = [:]
+        var dict: [GridCoordinate: Cell] = [:]
+        for row in 0...rows {
+            for col in 1...columns {
+                dict[GridCoordinate(row: row, column: col)] = Cell(terrain: [])
+            }
+        }
+        self.cells = dict
     }
 }
