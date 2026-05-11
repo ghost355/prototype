@@ -11,13 +11,17 @@ enum GameLoop {
         var state = initialState
         var currentContext: MenuContext = .main
         var errorMessage: String?
+        var phaseNotExecuted = true
         ViewController.initializeUI(state: state)
         Renderer.moveCursorTo(row: 40, col: 10)
 
         while state.info.isGameRunning {
 
             // Выполняем логику текущей фазы (если она ещё не выполнена)
-            state = PhaseProcessor.executePhase(state: state, drawing: drawing)
+            if phaseNotExecuted {
+                state = PhaseProcessor.executePhase(state: state, drawing: drawing)
+                phaseNotExecuted = false
+            }
 
             ViewController.showInfo(textLines: MenuText.info(for: currentContext, state: state))
             // Вызываем свой showContextMenu
@@ -31,7 +35,8 @@ enum GameLoop {
                 for: &currentContext,
                 state: &state,
                 errorMessage: &errorMessage,
-                drawing: drawing
+                drawing: drawing,
+                phaseNotExecuted: &phaseNotExecuted
             )
         }
 
@@ -92,7 +97,8 @@ enum GameLoop {
         for context: inout MenuContext,
         state: inout GameState,
         errorMessage: inout String?,
-        drawing: ActionCardDrawing
+        drawing: ActionCardDrawing,
+        phaseNotExecuted: inout Bool
     ) {
         // Универсальная обработка "0"
         if choice == "0" {
@@ -110,7 +116,7 @@ enum GameLoop {
                 "Неверный выбор. Введите число от 0 до \(items.count).", color: .red)
             return
         }
-
+        let phaseBefore = state.info.phase
         // Делегирование обработчикам
         switch context {
         case .main:
@@ -119,6 +125,10 @@ enum GameLoop {
         case .demo:
             DemoMenuHandler.handle(
                 choice: choiceInt, context: &context, state: &state, drawing: drawing)
+        }
+
+        if state.info.phase != phaseBefore {
+            phaseNotExecuted = true
         }
     }
 }
