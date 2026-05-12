@@ -2,54 +2,89 @@
 import Foundation
 
 enum GameLoop {
+    // MARK: - Контексты приложения
+
     enum AppContext {
         case mainMenu
         case game
     }
 
+    // MARK: - Публичный вход
+
     static func run(initialState: GameState, drawing: ActionCardDrawing) {
-        var state = initialState {
-            didSet {
-                if oldValue.info.phase != state.info.phase {
-                    phaseNotExecuted = true
-                }
-            }
-        }
+        var state = initialState
+
         var appContext: AppContext = .mainMenu
         var currentContext: MenuContext = .main
+
         var errorMessage: String?
         var phaseNotExecuted = true
 
         ViewController.initializeUI(state: state)
 
-        // MARK: Главый игровой цикл
-
+        // Главный цикл приложения
         while state.info.isGameRunning {
-            // --UPDATE-- Выполняем логику текущей фазы (если она ещё не выполнена)
-            if appContext == .game, phaseNotExecuted {
-                state = PhaseProcessor.executePhase(state: state, drawing: drawing)
-                phaseNotExecuted = false
-            }
-            // --RENDER-- Отрисовка всех изменений
-            ViewController.showInfo(
-                textLines: MenuText.info(for: appContext, menuContext: currentContext, state: state)
-            )
-            showContextMenu(
-                for: appContext, menuContext: currentContext, state: state,
-                errorMessage: &errorMessage
-            )
-            ViewController.clearInputPanel()
+            switch appContext {
+            case .mainMenu:
+                // --- RENDER ---
+                ViewController.showInfo(
+                    textLines: MenuText.info(for: appContext, menuContext: currentContext, state: state)
+                )
+                // TODO: refacor: move to ViewController
+                showContextMenu(
+                    for: appContext, menuContext: currentContext, state: state,
+                    errorMessage: &errorMessage
+                )
+                ViewController.clearInputPanel()
 
-            // --INPUT-- Ввод новых данных
-            guard let input = readLine() else { continue }
-            handleInput(
-                input,
-                menuContext: &currentContext,
-                appContext: &appContext,
-                state: &state,
-                errorMessage: &errorMessage,
-                drawing: drawing
-            )
+                // --- INPUT ---
+                guard let input = readLine() else { continue }
+                handleInput(
+                    input,
+                    menuContext: &currentContext,
+                    appContext: &appContext,
+                    state: &state,
+                    errorMessage: &errorMessage,
+                    drawing: drawing
+                )
+
+            case .game:
+                var phaseIndex = 0
+                var phaseNotExecuted = true
+
+                // Выполняем фазу при первом входе
+                if phaseNotExecuted {
+                    state = PhaseProcessor.executePhase(state: state, drawing: drawing, phaseIndex: phaseIndex)
+                    phaseNotExecuted = false
+                }
+
+                // --- RENDER ---
+                let descriptor = state.phaseDescriptors[phaseIndex]
+                ViewController.showInfo(
+                    textLines: MenuText.info(for: appContext, menuContext: currentContext, state: state, phaseName: descriptor.name)
+                )
+                showContextMenu(
+                    for: appContext, menuContext: currentContext, state: state,
+                    errorMessage: &errorMessage
+                )
+                ViewController.clearInputPanel()
+
+                // --- INPUT ---
+                guard let input = readLine() else { continue }
+                handleInput(
+                    input,
+                    menuContext: &currentContext,
+                    appContext: &appContext,
+                    state: &state,
+                    errorMessage: &errorMessage,
+                    drawing: drawing,
+                    onFinishPhase: {
+                        state = PhaseProcessor.nextPhase(state: state, currentIndex: phaseIndex)
+                        phaseIndex = (phaseIndex + 1) % state.phaseDescriptors.count
+                        phaseNotExecuted = true
+                    }
+                )
+            }
         }
 
         // Завершение приложения
@@ -61,19 +96,19 @@ enum GameLoop {
     // MARK: - Отрисовка контекстного меню
 
     private static func showContextMenu(
-        for appContext: AppContext, menuContext: MenuContext, state: GameState,
+        for appContext: AppContext,
+        menuContext: MenuContext,
+        state: GameState,
         errorMessage: inout String?
     ) {
         let items = MenuText.items(for: appContext, menuContext: menuContext, state: state)
         let helpText = errorMessage ?? MenuText.help(for: appContext, menuContext: menuContext)
 
-        // Очистка панели меню
         Renderer.clearPanel(
             startRow: LayoutConstants.menuRow, startCol: LayoutConstants.startCol,
             width: LayoutConstants.panelWidth, height: LayoutConstants.menuHeight
         )
 
-        // Универсальный пункт "0"
         let backLabel = menuContext == .main && appContext == .mainMenu ? "Выход из игры" : "Назад в главное меню"
         Renderer.drawText(
             "0. \(backLabel)",
@@ -83,7 +118,6 @@ enum GameLoop {
             color: .yellow
         )
 
-        // Основные пункты
         for (index, item) in items.enumerated() {
             Renderer.drawText(
                 "\(index + 1). \(item)",
@@ -94,7 +128,6 @@ enum GameLoop {
             )
         }
 
-        // Очистка и вывод подсказки
         Renderer.clearPanel(
             startRow: LayoutConstants.helpRow, startCol: LayoutConstants.startCol,
             width: LayoutConstants.panelWidth, height: LayoutConstants.helpHeight
@@ -115,9 +148,9 @@ enum GameLoop {
         appContext: inout AppContext,
         state: inout GameState,
         errorMessage: inout String?,
-        drawing: ActionCardDrawing
+        drawing: ActionCardDrawing,
+        onFinishPhase _: (() -> Void)? = nil
     ) {
-        // Универсальная обработка "0"
         if choice == "0" {
             switch (appContext, menuContext) {
             case (.mainMenu, .main):
@@ -138,11 +171,12 @@ enum GameLoop {
             return
         }
 
-        // Делегирование обработчикам
         switch (appContext, menuContext) {
         case (.mainMenu, .main):
             MainMenuHandler.handle(
-                choice: choiceInt, menuContext: &menuContext, appContext: &appContext,
+                choice: choiceInt,
+                menuContext: &menuContext,
+                appContext: &appContext,
                 state: &state,
                 drawing: drawing
             )

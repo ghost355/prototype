@@ -1,5 +1,4 @@
 import Foundation
-
 @testable import prototype
 
 /// Глобальная точка входа
@@ -12,7 +11,6 @@ struct GameApp {
             missionType: .offensive,
             turn: 1,
             maxTurns: 3,
-            phase: .friendlyHQEvent,
             isGameRunning: true
         )
 
@@ -20,7 +18,7 @@ struct GameApp {
             rows: 3,
             columns: 3
         )
-        let units: [String: prototype.Unit] = [:]  // уточняем тип для избежания неоднозначности
+        let units: [String: prototype.Unit] = [:] // уточняем тип для избежания неоднозначности
         let unitState = UnitState(
             unitPosition: [:],
             unitExposed: [],
@@ -28,15 +26,12 @@ struct GameApp {
             commandState: [:]
         )
 
-        let table: HQEventTable = loadJSON("hqEvent", as: HQEventTable.self, from: .module)
-
         let initialState = GameState(
             map: map,
             info: info,
             units: units,
             unitState: unitState,
-            debugMessage: "Нет сообщений",
-            table: table
+            debugMessage: "Нет сообщений"
         )
 
         let drawing = ActionDeck()

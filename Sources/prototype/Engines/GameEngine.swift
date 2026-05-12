@@ -6,9 +6,6 @@ enum GameEngine {
         case let .game(action):
             return GameCommandHandler.execute(state: state, action: action, drawing: drawing)
 
-        case let .phase(action):
-            return PhaseHandler.execute(state: state, action: action, drawing: drawing)
-
         case let .movement(action):
             return MovementHandler.execute(state: state, action: action, drawing: drawing)
 

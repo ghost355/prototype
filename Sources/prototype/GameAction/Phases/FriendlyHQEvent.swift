@@ -2,7 +2,7 @@
 
 enum FriendlyHQEvent {
     static func execute(state: GameState, drawing: ActionCardDrawing) -> GameState {
-        let eventHigherBound = 10  // во всех таблицах вроде 10
+        let eventHigherBound = 10 // во всех таблицах вроде 10
 
         guard state.info.turn > 1 else { return state.copy(debugMessage: "Пропуск 1 хода") }
         let eventCard = drawing.drawCards(count: 1)
@@ -14,7 +14,7 @@ enum FriendlyHQEvent {
         let randomCard = drawing.drawCards(count: 1)
         let eventNumber = randomCard.first?.randomNumber(for: eventHigherBound) ?? 0
 
-        let eventName = state.table.resolveEvent(turn: state.info.turn, roll: eventNumber) ?? "Неизвестное событие"
+        let eventName = "ЗАГЛУШКА"
 
         return state.copy(debugMessage: "Есть собыите номер \(eventNumber) Это \(eventName)")
     }

@@ -24,7 +24,7 @@ enum MenuText {
     }
 
     static func info(
-        for appContext: GameLoop.AppContext, menuContext: MenuContext, state: GameState
+        for appContext: GameLoop.AppContext, menuContext: MenuContext, state _: GameState, phaseName _: String? = nil
     )
         -> [String]
     {
@@ -33,7 +33,8 @@ enum MenuText {
             return [
                 "", "", "",
                 "\t\t\t\t\t\t FIELDS OF FIRE DELUXE - The digital edition".color(
-                    .yellow, style: .bold),
+                    .yellow, style: .bold
+                ),
             ]
         default: return [""]
         }
