@@ -10,9 +10,7 @@ enum MainMenuHandler {
     ) {
         switch choice {
         case 1:
-            state = GameEngine.apply(state: state, action: .phase(.finish), drawing: drawing)
-        case 2:
-            context = .demo
+            break
         default:
             break
         }

@@ -4,7 +4,6 @@ import Foundation
 enum GameLoop {
     enum MenuContext {
         case main
-        case demo
     }
 
     static func run(initialState: GameState, drawing: ActionCardDrawing) {
@@ -122,11 +121,7 @@ enum GameLoop {
         case .main:
             MainMenuHandler.handle(
                 choice: choiceInt, context: &context, state: &state, drawing: drawing)
-        case .demo:
-            DemoMenuHandler.handle(
-                choice: choiceInt, context: &context, state: &state, drawing: drawing)
         }
-
         if state.info.phase != phaseBefore {
             phaseNotExecuted = true
         }
