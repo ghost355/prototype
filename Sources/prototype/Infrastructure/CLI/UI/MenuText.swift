@@ -6,26 +6,36 @@ enum MenuContext {
 }
 
 enum MenuText {
-    static func items(for context: MenuContext, state _: GameState) -> [String] {
-        switch context {
-        case .main: return ["Завершить фазу", "Войти в Демо-меню"]
+    static func items(
+        for appContext: GameLoop.AppContext, menuContext: MenuContext, state _: GameState
+    ) -> [String] {
+        switch (appContext, menuContext) {
+        case (.mainMenu, .main): return ["Начать игру"]
+        default: return [""]
         }
     }
 
-    static func help(for context: MenuContext) -> String {
-        switch context {
-        case .main:
-            return "Главное меню. Выберите действие. Введите число и нажмите Enter."
+    static func help(for appContext: GameLoop.AppContext, menuContext: MenuContext) -> String {
+        switch (appContext, menuContext) {
+        case (.mainMenu, .main):
+            return "Главное меню. Введите номер пункта меню и нажмите Enter"
+        default: return ""
         }
     }
 
-    static func info(for context: MenuContext, state: GameState) -> [String] {
-        switch context {
-        case .main:
+    static func info(
+        for appContext: GameLoop.AppContext, menuContext: MenuContext, state: GameState
+    )
+        -> [String]
+    {
+        switch (appContext, menuContext) {
+        case (.mainMenu, .main):
             return [
-                    "ХОД: \(state.info.turn) \t \(state.info.phase.name)".color(.green),
-                    "\(state.debugMessage)".color(.magenta)
+                "", "", "",
+                "\t\t\t\t\t\t FIELDS OF FIRE DELUXE - The digital edition".color(
+                    .yellow, style: .bold),
             ]
+        default: return [""]
         }
     }
 }

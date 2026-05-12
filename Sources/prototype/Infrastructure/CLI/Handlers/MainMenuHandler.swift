@@ -4,13 +4,14 @@ import Foundation
 enum MainMenuHandler {
     static func handle(
         choice: Int,
-        context: inout MenuContext,
+        menuContext: inout MenuContext,
+        appContext: inout GameLoop.AppContext,
         state: inout GameState,
         drawing: ActionCardDrawing
     ) {
         switch choice {
         case 1:
-            break
+            appContext = .game
         default:
             break
         }

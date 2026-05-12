@@ -2,6 +2,11 @@
 import Foundation
 
 enum GameLoop {
+    enum AppContext {
+        case mainMenu
+        case game
+    }
+
     static func run(initialState: GameState, drawing: ActionCardDrawing) {
         var state = initialState {
             didSet {
@@ -10,6 +15,7 @@ enum GameLoop {
                 }
             }
         }
+        var appContext: AppContext = .mainMenu
         var currentContext: MenuContext = .main
         var errorMessage: String?
         var phaseNotExecuted = true
@@ -19,21 +25,27 @@ enum GameLoop {
         // MARK: Главый игровой цикл
 
         while state.info.isGameRunning {
-            // Выполняем логику текущей фазы (если она ещё не выполнена)
-            if phaseNotExecuted {
+            // --UPDATE-- Выполняем логику текущей фазы (если она ещё не выполнена)
+            if appContext == .game, phaseNotExecuted {
                 state = PhaseProcessor.executePhase(state: state, drawing: drawing)
                 phaseNotExecuted = false
             }
-            // Отрисовка всех изменений
-            ViewController.showInfo(textLines: MenuText.info(for: currentContext, state: state))
-            showContextMenu(for: currentContext, state: state, errorMessage: &errorMessage)
+            // --RENDER-- Отрисовка всех изменений
+            ViewController.showInfo(
+                textLines: MenuText.info(for: appContext, menuContext: currentContext, state: state)
+            )
+            showContextMenu(
+                for: appContext, menuContext: currentContext, state: state,
+                errorMessage: &errorMessage
+            )
             ViewController.clearInputPanel()
 
-            // Ввод новых данных
+            // --INPUT-- Ввод новых данных
             guard let input = readLine() else { continue }
             handleInput(
                 input,
-                for: &currentContext,
+                menuContext: &currentContext,
+                appContext: &appContext,
                 state: &state,
                 errorMessage: &errorMessage,
                 drawing: drawing
@@ -49,10 +61,11 @@ enum GameLoop {
     // MARK: - Отрисовка контекстного меню
 
     private static func showContextMenu(
-        for context: MenuContext, state: GameState, errorMessage: inout String?
+        for appContext: AppContext, menuContext: MenuContext, state: GameState,
+        errorMessage: inout String?
     ) {
-        let items = MenuText.items(for: context, state: state)
-        let helpText = errorMessage ?? MenuText.help(for: context)
+        let items = MenuText.items(for: appContext, menuContext: menuContext, state: state)
+        let helpText = errorMessage ?? MenuText.help(for: appContext, menuContext: menuContext)
 
         // Очистка панели меню
         Renderer.clearPanel(
@@ -61,7 +74,7 @@ enum GameLoop {
         )
 
         // Универсальный пункт "0"
-        let backLabel = context == .main ? "Выход из игры" : "Назад в главное меню"
+        let backLabel = menuContext == .main && appContext == .mainMenu ? "Выход из игры" : "Назад в главное меню"
         Renderer.drawText(
             "0. \(backLabel)",
             atRow: LayoutConstants.menuRow + 1,
@@ -98,34 +111,43 @@ enum GameLoop {
 
     private static func handleInput(
         _ choice: String,
-        for context: inout MenuContext,
+        menuContext: inout MenuContext,
+        appContext: inout AppContext,
         state: inout GameState,
         errorMessage: inout String?,
         drawing: ActionCardDrawing
     ) {
         // Универсальная обработка "0"
         if choice == "0" {
-            if context == .main {
+            switch (appContext, menuContext) {
+            case (.mainMenu, .main):
                 state = GameEngine.apply(state: state, action: .game(.exit), drawing: drawing)
-            } else {
-                context = .main
+            case (_, .main):
+                appContext = .mainMenu
+            default:
+                menuContext = .main
             }
             return
         }
 
-        let items = MenuText.items(for: context, state: state)
+        let items = MenuText.items(for: appContext, menuContext: menuContext, state: state)
         guard let choiceInt = Int(choice), choiceInt >= 1, choiceInt <= items.count else {
             errorMessage = Renderer.coloredText(
                 "Неверный выбор. Введите число от 0 до \(items.count).", color: .red
             )
             return
         }
+
         // Делегирование обработчикам
-        switch context {
-        case .main:
+        switch (appContext, menuContext) {
+        case (.mainMenu, .main):
             MainMenuHandler.handle(
-                choice: choiceInt, context: &context, state: &state, drawing: drawing
+                choice: choiceInt, menuContext: &menuContext, appContext: &appContext,
+                state: &state,
+                drawing: drawing
             )
+        default:
+            break
         }
     }
 }
