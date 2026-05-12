@@ -2,43 +2,45 @@
 import Foundation
 
 enum GameLoop {
-    enum MenuContext {
-        case main
-    }
-
     static func run(initialState: GameState, drawing: ActionCardDrawing) {
-        var state = initialState
+        var state = initialState {
+            didSet {
+                if oldValue.info.phase != state.info.phase {
+                    phaseNotExecuted = true
+                }
+            }
+        }
         var currentContext: MenuContext = .main
         var errorMessage: String?
         var phaseNotExecuted = true
+
         ViewController.initializeUI(state: state)
-        Renderer.moveCursorTo(row: 40, col: 10)
+
+        // MARK: Главый игровой цикл
 
         while state.info.isGameRunning {
-
             // Выполняем логику текущей фазы (если она ещё не выполнена)
             if phaseNotExecuted {
                 state = PhaseProcessor.executePhase(state: state, drawing: drawing)
                 phaseNotExecuted = false
             }
-
+            // Отрисовка всех изменений
             ViewController.showInfo(textLines: MenuText.info(for: currentContext, state: state))
-            // Вызываем свой showContextMenu
             showContextMenu(for: currentContext, state: state, errorMessage: &errorMessage)
             ViewController.clearInputPanel()
 
+            // Ввод новых данных
             guard let input = readLine() else { continue }
-
             handleInput(
                 input,
                 for: &currentContext,
                 state: &state,
                 errorMessage: &errorMessage,
-                drawing: drawing,
-                phaseNotExecuted: &phaseNotExecuted
+                drawing: drawing
             )
         }
 
+        // Завершение приложения
         Renderer.showCursor()
         Renderer.clearScreen()
         print("До свидания!")
@@ -65,7 +67,8 @@ enum GameLoop {
             atRow: LayoutConstants.menuRow + 1,
             col: LayoutConstants.startCol + 2,
             maxWidth: LayoutConstants.panelWidth - 4,
-            color: .yellow)
+            color: .yellow
+        )
 
         // Основные пункты
         for (index, item) in items.enumerated() {
@@ -74,7 +77,8 @@ enum GameLoop {
                 atRow: LayoutConstants.menuRow + 2 + index,
                 col: LayoutConstants.startCol + 2,
                 maxWidth: LayoutConstants.panelWidth - 4,
-                color: .red)
+                color: .red
+            )
         }
 
         // Очистка и вывод подсказки
@@ -85,7 +89,8 @@ enum GameLoop {
         Renderer.drawText(
             helpText, atRow: LayoutConstants.helpRow + 1,
             col: LayoutConstants.startCol + 2,
-            maxWidth: LayoutConstants.panelWidth - 4)
+            maxWidth: LayoutConstants.panelWidth - 4
+        )
         errorMessage = nil
     }
 
@@ -96,8 +101,7 @@ enum GameLoop {
         for context: inout MenuContext,
         state: inout GameState,
         errorMessage: inout String?,
-        drawing: ActionCardDrawing,
-        phaseNotExecuted: inout Bool
+        drawing: ActionCardDrawing
     ) {
         // Универсальная обработка "0"
         if choice == "0" {
@@ -112,18 +116,16 @@ enum GameLoop {
         let items = MenuText.items(for: context, state: state)
         guard let choiceInt = Int(choice), choiceInt >= 1, choiceInt <= items.count else {
             errorMessage = Renderer.coloredText(
-                "Неверный выбор. Введите число от 0 до \(items.count).", color: .red)
+                "Неверный выбор. Введите число от 0 до \(items.count).", color: .red
+            )
             return
         }
-        let phaseBefore = state.info.phase
         // Делегирование обработчикам
         switch context {
         case .main:
             MainMenuHandler.handle(
-                choice: choiceInt, context: &context, state: &state, drawing: drawing)
-        }
-        if state.info.phase != phaseBefore {
-            phaseNotExecuted = true
+                choice: choiceInt, context: &context, state: &state, drawing: drawing
+            )
         }
     }
 }

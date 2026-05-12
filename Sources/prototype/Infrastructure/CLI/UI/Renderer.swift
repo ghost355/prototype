@@ -146,3 +146,22 @@ enum Renderer {
         fflush(stdout)
     }
 }
+
+
+extension String {
+    /// Оборачивает строку в ANSI-код указанного цвета.
+    func color(_ color: TextColor, background: BgColor? = nil, style: TextStyle? = nil) -> String {
+        Renderer.coloredText(self, color: color, background: background, style: style)
+    }
+
+    /// Оборачивает строку в ANSI-код указанного стиля (без изменения цвета).
+    func style(_ style: TextStyle) -> String {
+        // Передаём цвет по умолчанию (.white), чтобы не менять уже установленный цвет.
+        Renderer.coloredText(self, color: .white, style: style)
+    }
+
+    /// Сбрасывает все стили и цвета до стандартных.
+    func reset() -> String {
+        Renderer.coloredText(self, color: .reset, style: .reset)
+    }
+}

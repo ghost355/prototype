@@ -4,7 +4,7 @@ import Foundation
 enum MainMenuHandler {
     static func handle(
         choice: Int,
-        context: inout GameLoop.MenuContext,
+        context: inout MenuContext,
         state: inout GameState,
         drawing: ActionCardDrawing
     ) {
