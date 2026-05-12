@@ -1,17 +1,29 @@
 // Infrastructure/CLI/UI/MenuText.swift
 import Foundation
 
+typealias MenuItem = (title: String, action: () -> Void)
+
 enum MenuContext {
     case main
 }
 
 enum MenuText {
     static func items(
-        for appContext: GameLoop.AppContext, menuContext: MenuContext, state _: GameState
-    ) -> [String] {
+        for appContext: GameLoop.AppContext,
+        menuContext: MenuContext,
+        state _: GameState,
+        onStartGame: @escaping () -> Void,
+        onExit: @escaping () -> Void
+    ) -> [MenuItem] {
         switch (appContext, menuContext) {
-        case (.mainMenu, .main): return ["Начать игру"]
-        default: return [""]
+        case (.mainMenu, .main):
+            return [
+                ("Начать игру", onStartGame),
+                ("Выход", onExit),
+            ]
+        case (.game, .main):
+            return []
+        default: return []
         }
     }
 
